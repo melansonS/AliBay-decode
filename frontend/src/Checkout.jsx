@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 
 class UnconnectedCheckout extends Component {
   constructor() {
-    super() 
+    super();
     this.state = {
       checkedOut: false,
       item: {}
-    }
+    };
   }
   handleCheckout = async e => {
     e.preventDefault();
@@ -24,17 +24,25 @@ class UnconnectedCheckout extends Component {
     let parsed = JSON.parse(responseBody);
     if (parsed.success) {
       this.props.dispatch({ type: "clear-cart" });
-      console.log(parsed.purchaseOrder)
-      this.props.dispatch({type: "new-po", purchased: parsed.purchased, purchaseOrder: parsed.purchaseOrder})
-      this.props.history.push("/confirmation")
+      console.log(parsed.purchaseOrder);
+      this.props.dispatch({
+        type: "new-po",
+        purchased: parsed.purchased,
+        purchaseOrder: parsed.purchaseOrder
+      });
+      this.props.history.push("/confirmation");
     }
-    
-    this.setState({checkedOut: true, item: parsed.purchased})
+
+    this.setState({ checkedOut: true, item: parsed.purchased });
   };
   render = () => {
     return (
       <>
-        <button type="submit" onClick={this.handleCheckout}>
+        <button
+          type="submit"
+          onClick={this.handleCheckout}
+          className="checkout-button"
+        >
           Checkout!
         </button>
       </>

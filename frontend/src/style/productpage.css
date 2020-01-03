@@ -4,6 +4,27 @@
   object-fit: contain;
   object-position: 50% 35%;
 }
+.field-name {
+  font-weight: 500;
+}
+
+.rating-form input[type="radio"] {
+  display: none;
+}
+.rating-form .rating-star {
+  position: relative;
+}
+.rating-submit {
+  border: 2px #333333 solid;
+  border-radius: 20px;
+  display: initial;
+  padding: 5px 10px;
+  margin: 10px;
+}
+.product-page .addtocart-container {
+  position: relative;
+  width: 7em;
+}
 
 .carousel-wrapper {
   position: relative;

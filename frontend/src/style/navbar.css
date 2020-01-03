@@ -58,7 +58,7 @@ nav {
 
 .seachbar {
   position: relative;
-  right: calc(-100% + 76px);
+  right: calc(-100% + 100px);
 }
 
 .search-input {

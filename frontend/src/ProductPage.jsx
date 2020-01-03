@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import AddToCart from "./AddToCart.jsx";
 import UpdateItem from "./UpdateItem.jsx";
+import { FiStar } from "react-icons/fi";
 import "./style/productpage.css";
 
 import { IconContext } from "react-icons";
@@ -55,6 +56,7 @@ class unconnectedProductPage extends Component {
     body = JSON.parse(body);
     console.log("Rating success:", body);
     this.setState({ itemRatings: body.ratings });
+    this.setState({ userRating: undefined });
   };
 
   handleShowUpdateItem = event => {
@@ -142,7 +144,7 @@ class unconnectedProductPage extends Component {
     }
 
     return (
-      <section>
+      <section className="product-page">
         <h1>{this.state.itemDetails.productName}</h1>
         <h3>{this.state.itemDetails.descriptionHeader}</h3>
         <div></div>
@@ -150,59 +152,121 @@ class unconnectedProductPage extends Component {
         <div class="carousel-wrapper">{images}</div>
 
         <div>{this.state.itemDetails.descriptionText}</div>
-        <div>Location: {this.state.itemDetails.location}</div>
+        <br></br>
         <div>
-          Price: <sup>$</sup>
+          <span className="field-name">Location:</span>
+          {this.state.itemDetails.location}
+        </div>
+        <div>
+          <span className="field-name">Price:</span>
+          <sup>$</sup>
           {this.state.itemDetails.price}
           <small>CAD</small>
         </div>
 
         <div>
-          Rating: <b>{roundedRating}</b> - number of ratings: ({ratings.length})
+          <span className="field-name">Rating:</span>
+          {roundedRating}
         </div>
-        <div>Category: {this.state.itemDetails.category}</div>
-        <div>Tags: {tags}</div>
         <div>
-          Seller:{" "}
+          <span className="field-name">Number of ratings: </span>
+          {ratings.length}
+        </div>
+        <div>
+          <span className="field-name">Category: </span>
+          {this.state.itemDetails.category}
+        </div>
+        <div>
+          <span className="field-name"> Tags: </span>
+          {tags}
+        </div>
+        <div>
+          <span className="field-name"> Seller: </span>
           <Link to={"/seller/" + this.state.itemDetails.sellerId}>
             {this.state.itemDetails.sellerName}
           </Link>
         </div>
         {/* Rating inputs! */}
-        <form onSubmit={this.handleRatingSubmit}>
-          Rate this product
+        <form onSubmit={this.handleRatingSubmit} className="rating-form">
+          <span className="field-name"> Rate this product: </span>
+
           <input
+            id="one-star"
             type="radio"
             name="stars"
             value={1}
             onChange={this.handleRatingChange}
             required
           ></input>
+          <label
+            for="one-star"
+            className={
+              this.state.userRating >= 1 ? "rating-star" : "rating-blank"
+            }
+          >
+            <FiStar />
+          </label>
           <input
+            id="two-star"
             type="radio"
             name="stars"
             value={2}
             onChange={this.handleRatingChange}
           ></input>
+          <label
+            for="two-star"
+            className={
+              this.state.userRating >= 2 ? "rating-star" : "rating-blank"
+            }
+          >
+            <FiStar />
+          </label>
           <input
+            id="three-star"
             type="radio"
             name="stars"
             value={3}
             onChange={this.handleRatingChange}
           ></input>
+          <label
+            for="three-star"
+            className={
+              this.state.userRating >= 3 ? "rating-star" : "rating-blank"
+            }
+          >
+            <FiStar />
+          </label>
           <input
+            id="four-star"
             type="radio"
             name="stars"
             value={4}
             onChange={this.handleRatingChange}
           ></input>
+          <label
+            for="four-star"
+            className={
+              this.state.userRating >= 4 ? "rating-star" : "rating-blank"
+            }
+          >
+            <FiStar />
+          </label>
           <input
+            id="five-star"
             type="radio"
             name="stars"
             value={5}
             onChange={this.handleRatingChange}
           ></input>
-          <button>Submit rating!</button>
+          <label
+            for="five-star"
+            className={
+              this.state.userRating >= 5 ? "rating-star" : "rating-blank"
+            }
+          >
+            <FiStar />
+          </label>
+          <button className="rating-submit">Submit rating!</button>
         </form>
 
         <AddToCart

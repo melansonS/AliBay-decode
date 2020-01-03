@@ -6,6 +6,9 @@
 .productpage-input {
   margin: 20px 10px;
 }
+.productpage-textarea {
+  display: flex;
+}
 
 .productpage-container .bump-button {
   text-align: center;

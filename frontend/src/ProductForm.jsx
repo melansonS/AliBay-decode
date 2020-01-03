@@ -139,7 +139,7 @@ class UnconnectedProductForm extends Component {
                 required
               />
             </div>
-            <div class="productpage-input">
+            <div class="productpage-textarea">
               <label htmlFor="prod-desc-text">Description Body</label>
               <textarea
                 id="prod-desc-text"

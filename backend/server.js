@@ -116,6 +116,7 @@ app.post("/add-product", upload.array("files"), (req, res) => {
         posts,
         tags,
         category
+        // featured:"featured"
       },
       (err, item) => {
         dbo
